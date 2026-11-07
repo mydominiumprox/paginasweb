@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enjambre — Sitio Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cafe-balada:#3b2a22;
+  --crema:#f3e6d3;
+  --terracota:#b85c38;
+  --naranja-sepia:#d98d4f;
+  --negro:#1a1410;
+  --card:#efe0c9;
+  --text:#2b1f17;
+  --text-soft:#5a4536;
+  --accent:var(--terracota);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --crema:#241a14;
+    --card:#2d2019;
+    --text:#f3e6d3;
+    --text-soft:#d3b998;
+  }
+}
+:root[data-theme="dark"]{
+  --crema:#241a14;
+  --card:#2d2019;
+  --text:#f3e6d3;
+  --text-soft:#d3b998;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+body{
+  background:var(--crema);
+  color:var(--text);
+  font-family:'Bitter',serif;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  overflow-x:hidden;
+}
+h1,h2,h3,.brand,nav a,.btn{font-family:'Oswald',sans-serif;letter-spacing:.03em;text-transform:uppercase;}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--negro);z-index:50;}
+
+/* NAV */
+header{
+  position:sticky;top:0;z-index:40;
+  background:linear-gradient(180deg,var(--negro) 0%, #241a14 100%);
+  padding-top:env(safe-area-inset-top,0px);
+  border-bottom:3px solid var(--terracota);
+}
+.navbar{
+  max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+}
+.brand{color:var(--naranja-sepia);font-size:1.4rem;font-weight:700;letter-spacing:.1em;}
+.brand span{color:var(--crema);}
+nav{display:flex;gap:28px;flex-wrap:wrap;}
+nav a{color:var(--crema);text-decoration:none;font-size:.85rem;font-weight:500;position:relative;padding:4px 0;}
+nav a:hover{color:var(--naranja-sepia);}
+nav a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--naranja-sepia);transition:width .25s;}
+nav a:hover::after{width:100%;}
+.navbtn{background:var(--terracota);color:var(--negro);padding:8px 16px;border-radius:2px;font-size:.8rem;font-weight:700;}
+.navbtn:hover{background:var(--naranja-sepia);}
+#menuToggle{display:none;background:none;border:none;color:var(--crema);font-size:1.6rem;cursor:pointer;}
+
+/* HERO */
+.hero{
+  position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:radial-gradient(ellipse at 50% 20%, #4a3326 0%, var(--negro) 70%);
+}
+.hero-art{position:absolute;inset:0;opacity:.9;}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:780px;padding:40px 24px;}
+.kicker{color:var(--naranja-sepia);letter-spacing:.3em;font-size:.75rem;margin-bottom:18px;font-family:'Oswald',sans-serif;}
+.hero h1{font-size:clamp(3rem,10vw,6rem);color:var(--crema);line-height:.95;margin-bottom:22px;text-shadow:0 4px 30px rgba(0,0,0,.5);}
+.hero h1 em{font-style:normal;color:var(--terracota);}
+.hero p.desc{color:#e8d7bd;font-family:'Bitter',serif;font-style:italic;font-size:1.05rem;line-height:1.6;max-width:620px;margin:0 auto 32px;}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:14px 30px;border-radius:2px;font-size:.85rem;font-weight:700;text-decoration:none;transition:transform .2s,background .2s;}
+.btn-primary{background:var(--terracota);color:var(--negro);}
+.btn-primary:hover{background:var(--naranja-sepia);transform:translateY(-2px);}
+.btn-ghost{border:2px solid var(--crema);color:var(--crema);}
+.btn-ghost:hover{background:var(--crema);color:var(--negro);}
+
+/* SECTIONS */
+section{padding:90px 20px;max-width:1200px;margin:0 auto;}
+.section-tag{color:var(--terracota);font-size:.75rem;letter-spacing:.3em;margin-bottom:10px;}
+.section-title{font-size:clamp(2rem,5vw,3rem);margin-bottom:16px;}
+.section-intro{color:var(--text-soft);max-width:640px;margin-bottom:50px;font-size:1.05rem;line-height:1.7;}
+
+/* STAGE IMAGE (illustrative art, not a photo) */
+.stage-visual{
+  position:relative;border-radius:4px;overflow:hidden;aspect-ratio:16/8;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(217,141,79,.5), transparent 45%),
+    radial-gradient(circle at 70% 15%, rgba(184,92,56,.45), transparent 50%),
+    linear-gradient(180deg,#1a1410 0%, #3b2a22 60%, #1a1410 100%);
+  display:flex;align-items:flex-end;justify-content:center;margin:20px 0 60px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+.stage-visual svg{width:100%;height:100%;display:block;}
+.stage-caption{position:absolute;bottom:14px;left:18px;color:var(--crema);font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.15em;opacity:.8;}
+
+/* ABOUT GRID */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;}
+.about-grid p{color:var(--text-soft);line-height:1.8;margin-bottom:16px;}
+.vinyl{
+  width:100%;aspect-ratio:1/1;border-radius:50%;
+  background:repeating-radial-gradient(circle at center, #1a1410 0, #1a1410 3px, #241a14 4px, #241a14 7px);
+  position:relative;box-shadow:0 20px 50px rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:center;
+  animation:spin 14s linear infinite;
+}
+@media (prefers-reduced-motion:reduce){.vinyl{animation:none;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+.vinyl-label{width:34%;height:34%;border-radius:50%;background:var(--terracota);display:flex;align-items:center;justify-content:center;color:var(--negro);font-family:'Oswald',sans-serif;font-weight:700;font-size:.7rem;text-align:center;}
+
+/* TOUR */
+.tour-list{display:flex;flex-direction:column;gap:2px;background:var(--terracota);border-radius:4px;overflow:hidden;}
+.tour-row{
+  display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:center;
+  background:var(--card);padding:20px 24px;
+}
+.tour-date{font-family:'Oswald',sans-serif;color:var(--terracota);font-weight:700;}
+.tour-date small{display:block;color:var(--text-soft);font-weight:400;font-size:.75rem;}
+.tour-city{font-weight:600;}
+.tour-venue{color:var(--text-soft);font-size:.9rem;}
+.tour-row .btn{padding:9px 20px;font-size:.75rem;}
+.tour-note{margin-top:18px;color:var(--text-soft);font-size:.85rem;font-style:italic;}
+
+/* LIVE EXPERIENCE */
+.live-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.live-visual{
+  aspect-ratio:4/3;border-radius:4px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#0f0b08,#2a1d15);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+.live-visual svg{width:100%;height:100%;}
+
+/* DISCOGRAPHY */
+.disco-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;}
+.album{background:var(--card);border-radius:4px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2);transition:transform .25s;border-top:3px solid var(--terracota);}
+.album:hover{transform:translateY(-6px);}
+.album-info{padding:24px 20px;}
+.album-info h3{font-size:1rem;margin-bottom:4px;}
+.album-info p{color:var(--text-soft);font-size:.8rem;}
+.album-play{display:flex;gap:14px;margin-top:10px;font-size:.75rem;font-family:'Oswald',sans-serif;}
+.album-play a{color:var(--terracota);text-decoration:none;}
+.album-play a:hover{text-decoration:underline;}
+
+/* NEWSLETTER / CONTACT */
+.newsletter{
+  background:linear-gradient(135deg,var(--negro),#3b2a22);
+  border-radius:6px;padding:60px 40px;color:var(--crema);text-align:center;
+}
+.newsletter h2{color:var(--crema);}
+.newsletter p{color:#d9c6a9;max-width:520px;margin:12px auto 28px;}
+.form-row{display:flex;gap:12px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+.form-row input{
+  flex:1;min-width:200px;padding:13px 16px;border-radius:2px;border:2px solid var(--terracota);
+  background:rgba(255,255,255,.05);color:var(--crema);font-family:'Bitter',serif;
+}
+.form-row input::placeholder{color:#c9b091;}
+.form-note{font-size:.75rem;color:#c9b091;margin-top:14px;}
+.social-links{display:flex;gap:16px;justify-content:center;margin-top:34px;flex-wrap:wrap;}
+.social-links a{color:var(--crema);border:1px solid #6b5440;padding:10px 22px;border-radius:2px;text-decoration:none;font-family:'Oswald',sans-serif;font-size:.8rem;}
+.social-links a:hover{background:var(--terracota);border-color:var(--terracota);color:var(--negro);}
+
+footer{text-align:center;padding:40px 20px;color:var(--text-soft);font-size:.8rem;}
+footer .brand{display:block;margin-bottom:10px;}
+
+@media(max-width:860px){
+  .about-grid,.live-wrap{grid-template-columns:1fr;}
+  nav{position:fixed;top:0;right:-100%;height:100vh;background:var(--negro);flex-direction:column;
+    width:min(78vw,320px);padding:100px 28px 28px;transition:right .3s;gap:26px;}
+  nav.open{right:0;}
+  #menuToggle{display:block;}
+  .tour-row{grid-template-columns:1fr;text-align:left;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="brand">ENJAMBRE<span>•</span></div>
+    <nav id="navMenu">
+      <a href="#inicio">Inicio</a>
+      <a href="#tour">Tour &amp; Conciertos</a>
+      <a href="#discografia">Discografía</a>
+      <a href="#contacto">Boletín &amp; Contacto</a>
+      <a href="#" class="navbtn">Boletos</a>
+    </nav>
+    <button id="menuToggle" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<section id="inicio" class="hero">
+  <div class="hero-art">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice" style="width:100%;height:100%;">
+      <defs>
+        <radialGradient id="spot" cx="50%" cy="0%" r="70%">
+          <stop offset="0%" stop-color="#d98d4f" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#d98d4f" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="700" fill="url(#spot)"/>
+      <g stroke="#b85c38" stroke-opacity="0.25">
+        <line x1="150" y1="0" x2="500" y2="700"/>
+        <line x1="400" y1="0" x2="650" y2="700"/>
+        <line x1="750" y1="0" x2="550" y2="700"/>
+        <line x1="1050" y1="0" x2="700" y2="700"/>
+      </g>
+      <g fill="#1a1410">
+        <rect x="0" y="620" width="1200" height="80"/>
+        <rect x="560" y="520" width="18" height="120"/>
+        <rect x="610" y="480" width="18" height="160"/>
+        <circle cx="617" cy="460" r="30"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="kicker">Rock alternativo · desde Fresnillo, Zacatecas</div>
+    <h1>ENJAMBRE<br><em>noches de salón</em></h1>
+    <p class="desc">El sitio oficial para sumergirte en el universo de Enjambre: explora sus álbumes, vive la experiencia en vivo y conoce la historia detrás del sonido melancólico y nostálgico que conquistó al rock en español.</p>
+    <div class="hero-ctas">
+      <a href="#tour" class="btn btn-primary">Ver fechas de gira</a>
+      <a href="#discografia" class="btn btn-ghost">Explorar discografía</a>
+    </div>
+  </div>
+</section>
+
+<section id="historia">
+  <div class="section-tag">Trayectoria</div>
+  <h2 class="section-title">Dos décadas de melancolía eléctrica</h2>
+  <div class="about-grid">
+    <div>
+      <p>Formada en Fresnillo, Zacatecas, Enjambre construyó un sonido propio dentro del rock en español: guitarras con textura vintage, sintetizadores cálidos y letras que oscilan entre la nostalgia, el desamor y la introspección.</p>
+      <p>De discos como <strong>Daltónico</strong> e <strong>Imperfecto Extraño</strong> a la serie conceptual <strong>En el Bar</strong> y el reciente <strong>Daños Luz</strong>, la banda ha mantenido una identidad sonora reconocible mientras celebra 20 años de carrera con su gira más grande hasta la fecha.</p>
+      <p>Su propuesta en vivo —luces cálidas, atmósferas de salón y un repertorio que cruza generaciones de fans— los ha llevado de foros íntimos a estadios.</p>
+    </div>
+    <div class="vinyl">
+      <div class="vinyl-label">ENJAMBRE<br>33⅓ RPM</div>
+    </div>
+  </div>
+  <div class="stage-visual">
+    <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <radialGradient id="g1" cx="25%" cy="10%" r="60%"><stop offset="0%" stop-color="#d98d4f" stop-opacity="0.55"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+        <radialGradient id="g2" cx="75%" cy="5%" r="60%"><stop offset="0%" stop-color="#b85c38" stop-opacity="0.5"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+      </defs>
+      <rect width="1200" height="500" fill="url(#g1)"/>
+      <rect width="1200" height="500" fill="url(#g2)"/>
+      <g fill="#1a1410">
+        <rect x="0" y="420" width="1200" height="80"/>
+        <rect x="430" y="300" width="16" height="130"/>
+        <rect x="470" y="260" width="16" height="170"/>
+        <circle cx="478" cy="240" r="26"/>
+        <rect x="560" y="330" width="90" height="100" rx="4"/>
+        <rect x="700" y="280" width="16" height="150"/>
+        <circle cx="708" cy="260" r="24"/>
+      </g>
+    </svg>
+    <div class="stage-caption">BANDA EN ESCENARIO — SESIÓN CONCEPTUAL RETRO</div>
+  </div>
+</section>
+
+<section id="tour">
+  <div class="section-tag">Daños Luz Tour · 20 años</div>
+  <h2 class="section-title">Tour &amp; Conciertos</h2>
+  <p class="section-intro">Más de 60 fechas agotadas en México y Estados Unidos. Enjambre continúa su celebración de dos décadas con nuevas ciudades confirmadas.</p>
+  <div class="tour-list">
+    <div class="tour-row">
+      <div class="tour-date">8 NOV<small>2026</small></div>
+      <div><div class="tour-city">Ciudad de México</div><div class="tour-venue">Zócalo CDMX — Vitae Fest (entrada libre)</div></div>
+      <a href="#" class="btn btn-primary">Más información</a>
+    </div>
+    <div class="tour-row">
+      <div class="tour-date">— 2027</div>
+      <div><div class="tour-city">El Paso, Texas</div><div class="tour-venue">Gira por Estados Unidos y Canadá — fecha por confirmar</div></div>
+      <a href="#" class="btn btn-primary">Avísame</a>
+    </div>
+    <div class="tour-row">
+      <div class="tour-date">PRÓX.<small>Etapas</small></div>
+      <div><div class="tour-city">Segunda etapa por México</div><div class="tour-venue">Más fechas en Colombia, Perú y Guatemala — por anunciar</div></div>
+      <a href="#" class="btn btn-primary">Comprar boletos</a>
+    </div>
+  </div>
+  <p class="tour-note">Fechas de referencia según anuncios públicos de la gira Daños Luz Tour 2026; consulta siempre la boletera oficial para horarios y disponibilidad actualizados.</p>
+</section>
+
+<section id="vivo">
+  <div class="section-tag">Experiencia en vivo</div>
+  <h2 class="section-title">Luces cálidas, público encendido</h2>
+  <div class="live-wrap">
+    <div class="live-visual">
+      <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="l1" cx="20%" cy="0%" r="70%"><stop offset="0%" stop-color="#d98d4f" stop-opacity="0.6"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+          <radialGradient id="l2" cx="80%" cy="0%" r="70%"><stop offset="0%" stop-color="#b85c38" stop-opacity="0.55"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+        </defs>
+        <rect width="500" height="400" fill="#120d09"/>
+        <rect width="500" height="400" fill="url(#l1)"/>
+        <rect width="500" height="400" fill="url(#l2)"/>
+        <g fill="#1a1410" opacity="0.9">
+          <circle cx="90" cy="330" r="16"/><circle cx="130" cy="340" r="14"/><circle cx="170" cy="325" r="17"/>
+          <circle cx="210" cy="345" r="15"/><circle cx="250" cy="330" r="16"/><circle cx="290" cy="340" r="14"/>
+          <circle cx="330" cy="325" r="17"/><circle cx="370" cy="345" r="15"/><circle cx="410" cy="330" r="16"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <p style="color:var(--text-soft);line-height:1.8;margin-bottom:16px;">Cada concierto de Enjambre es una puesta en escena cuidada al detalle: iluminación cálida de tonos sepia y terracota, atmósfera de salón vintage y un repertorio que combina clásicos con material reciente de Daños Luz.</p>
+      <p style="color:var(--text-soft);line-height:1.8;margin-bottom:28px;">Sus shows en el Estadio GNP Seguros reunieron a más de 120 mil personas en dos noches, consolidando una de las giras más importantes del rock en español en 2026.</p>
+      <a href="#tour" class="btn btn-primary">Ver próximas fechas</a>
+    </div>
+  </div>
+</section>
+
+<section id="discografia">
+  <div class="section-tag">Discografía</div>
+  <h2 class="section-title">Álbumes icónicos</h2>
+  <p class="section-intro">Dos décadas de producciones que definieron el sonido melancólico de Enjambre.</p>
+  <div class="disco-grid">
+    <div class="album">
+      <div class="album-info">
+        <h3>Daltónico</h3>
+        <p>El clásico que definió su primera etapa.</p>
+        <div class="album-play"><a href="https://open.spotify.com/search/Enjambre%20Dalt%C3%B3nico" target="_blank" rel="noopener">▶ Spotify</a><a href="https://www.youtube.com/results?search_query=Enjambre+Dalt%C3%B3nico" target="_blank" rel="noopener">▶ YouTube</a></div>
+      </div>
+    </div>
+    <div class="album">
+      <div class="album-info">
+        <h3>Imperfecto Extraño</h3>
+        <p>Guitarras crudas y letras introspectivas.</p>
+        <div class="album-play"><a href="https://open.spotify.com/search/Enjambre%20Imperfecto%20Extra%C3%B1o" target="_blank" rel="noopener">▶ Spotify</a><a href="https://www.youtube.com/results?search_query=Enjambre+Imperfecto+Extra%C3%B1o" target="_blank" rel="noopener">▶ YouTube</a></div>
+      </div>
+    </div>
+    <div class="album">
+      <div class="album-info">
+        <h3>Noches de Salón</h3>
+        <p>Atmósferas de bohemia y madurez sonora.</p>
+        <div class="album-play"><a href="https://open.spotify.com/search/Enjambre%20Noches%20de%20Sal%C3%B3n" target="_blank" rel="noopener">▶ Spotify</a><a href="https://www.youtube.com/results?search_query=Enjambre+Noches+de+Sal%C3%B3n" target="_blank" rel="noopener">▶ YouTube</a></div>
+      </div>
+    </div>
+    <div class="album">
+      <div class="album-info">
+        <h3>El Segundo es Felino</h3>
+        <p>Un clásico de su catálogo, editado por Capitol Music.</p>
+        <div class="album-play"><a href="https://open.spotify.com/search/Enjambre%20El%20Segundo%20es%20Felino" target="_blank" rel="noopener">▶ Spotify</a><a href="https://www.youtube.com/results?search_query=Enjambre+El+Segundo+es+Felino" target="_blank" rel="noopener">▶ YouTube</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="newsletter">
+    <div class="section-tag" style="color:var(--naranja-sepia);">Club de fans</div>
+    <h2>No te pierdas nada de Enjambre</h2>
+    <p>Suscríbete al boletín oficial y recibe primero las fechas de gira, preventas de boletos y novedades musicales.</p>
+    <form class="form-row" onsubmit="event.preventDefault(); this.querySelector('button').textContent='¡Gracias por suscribirte!';">
+      <input type="email" placeholder="tu@correo.com" required>
+      <button type="submit" class="btn btn-primary">Suscribirme</button>
+    </form>
+    <p class="form-note">Sin spam. Cancela tu suscripción cuando quieras.</p>
+    <div class="social-links">
+      <a href="#" target="_blank" rel="noopener">Comprar boletos</a>
+      <a href="https://open.spotify.com/artist/1ZdhAl62G6ZlEKqIwUAfZR" target="_blank" rel="noopener">Spotify</a>
+      <a href="https://youtube.com/channel/UCM-GvgUy0EAZU7ZwXKLarkg" target="_blank" rel="noopener">YouTube</a>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand" style="color:var(--terracota);">ENJAMBRE</span>
+  © 2026 Enjambre. Sitio de fans no oficial, elaborado con fines ilustrativos.
+</footer>
+
+<script>
+const toggle = document.getElementById('menuToggle');
+const nav = document.getElementById('navMenu');
+toggle.addEventListener('click', () => nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>
