@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UAEMéx — Universidad Autónoma del Estado de México</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde-900:#0B4A2C; --verde-700:#0F6B3E; --verde-600:#157F4A;
+  --oro-500:#D9A441; --oro-300:#EAC77A;
+  --crema:#F7F4EC; --blanco:#FFFFFF; --gris-700:#4A4C4E; --gris-300:#D8D6CF;
+  --tinta:#1C2420;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --crema:#13231A; --blanco:#17271D; --gris-700:#C7CAC5; --gris-300:#2B3A30; --tinta:#F2F0E8;
+  }
+}
+:root[data-theme="dark"]{
+  --crema:#13231A; --blanco:#17271D; --gris-700:#C7CAC5; --gris-300:#2B3A30; --tinta:#F2F0E8;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:72px;}
+body{
+  margin:0; background:var(--crema); color:var(--tinta);
+  font-family:'Inter',system-ui,sans-serif; line-height:1.55;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--verde-900);}
+h1,h2,h3{font-family:'Lora',Georgia,serif; margin:0 0 .4em; line-height:1.15; font-weight:600;}
+p{margin:0 0 1em; color:var(--gris-700);}
+a{color:inherit;}
+.wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+img,svg{max-width:100%;}
+
+/* nav */
+header.topbar{
+  position:sticky; top:0; z-index:30; background:var(--verde-900); color:var(--blanco);
+  padding-top:env(safe-area-inset-top,0px);
+}
+.navrow{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1120px; margin:0 auto;}
+.brand{display:flex; align-items:center; gap:10px; font-family:'Lora',serif; font-weight:700; font-size:1.05rem; color:var(--blanco); text-decoration:none;}
+.brand svg{flex:none;}
+nav.links{display:flex; gap:28px; flex-wrap:wrap;}
+nav.links a{color:#EDE7D6; text-decoration:none; font-size:.95rem; font-weight:500; padding:6px 2px; border-bottom:2px solid transparent;}
+nav.links a:hover, nav.links a:focus-visible{border-color:var(--oro-500); color:var(--blanco);}
+.cta-small{background:var(--oro-500); color:var(--verde-900); padding:9px 18px; border-radius:3px; text-decoration:none; font-weight:700; font-size:.9rem; white-space:nowrap;}
+
+/* hero */
+.hero{position:relative; overflow:hidden; background:var(--verde-900); color:#F4F1E6;}
+.hero .wrap{position:relative; z-index:2; padding:76px 24px 96px; display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center;}
+.hero h1{font-size:clamp(2.1rem,4.4vw,3.2rem); color:#fff;}
+.hero p.lead{color:#E3DEC9; font-size:1.08rem; max-width:52ch;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-top:1.4em;}
+.btn{display:inline-block; padding:13px 24px; border-radius:3px; text-decoration:none; font-weight:700; font-size:.95rem;}
+.btn-oro{background:var(--oro-500); color:var(--verde-900);}
+.btn-outline{border:1.5px solid #CFC9AE; color:#F4F1E6;}
+.hero-art{filter:drop-shadow(0 18px 30px rgba(0,0,0,.35));}
+.hero-stripe{position:absolute; right:0; top:0; bottom:0; width:38%; background:linear-gradient(160deg,var(--oro-500) 0%,#C98F2B 100%); clip-path:polygon(28% 0,100% 0,100% 100%,0% 100%); z-index:1; opacity:.18;}
+
+/* sections */
+section{padding:72px 0;}
+.eyebrow{font-size:.8rem; letter-spacing:.02em; color:var(--verde-700); font-weight:700; margin-bottom:.5em;}
+.section-head{max-width:62ch; margin-bottom:2.2em;}
+.section-head p{font-size:1.05rem;}
+.alt{background:var(--blanco);}
+
+/* history timeline */
+.timeline{display:grid; gap:0; border-left:3px solid var(--oro-300); margin-left:6px;}
+.tl-item{position:relative; padding:0 0 32px 28px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:""; position:absolute; left:-9px; top:3px; width:15px; height:15px; border-radius:50%; background:var(--oro-500); border:3px solid var(--crema);}
+.tl-year{font-family:'Lora',serif; font-weight:700; color:var(--verde-700); font-size:1.15rem;}
+.tl-item p{margin-top:.3em;}
+
+/* impact stats */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+.stat{background:var(--verde-900); color:#F4F1E6; padding:26px 20px; border-radius:4px;}
+.stat .n{font-family:'Lora',serif; font-size:2rem; font-weight:700; color:var(--oro-300);}
+.stat .l{font-size:.88rem; color:#D8D2BB; margin-top:.3em;}
+
+/* academic offer */
+.offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+.offer-card{background:var(--blanco); border:1px solid var(--gris-300); border-top:4px solid var(--verde-700); padding:24px; border-radius:4px;}
+.offer-card h3{font-size:1.1rem; margin-bottom:.4em;}
+.offer-card p{font-size:.95rem; margin-bottom:0;}
+
+/* campus life */
+.life-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center;}
+.life-block + .life-block{margin-top:56px;}
+figure{margin:0; background:var(--blanco); border:1px solid var(--gris-300); border-radius:6px; overflow:hidden;}
+figure figcaption{padding:10px 14px; font-size:.82rem; color:var(--gris-700); border-top:1px solid var(--gris-300);}
+
+/* contact */
+.contact-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:40px;}
+.contact-card{background:var(--blanco); border:1px solid var(--gris-300); border-radius:6px; padding:28px;}
+.contact-card h3{font-size:1.05rem;}
+.link-list{list-style:none; padding:0; margin:0;}
+.link-list li{margin-bottom:12px;}
+.link-list a{text-decoration:none; color:var(--verde-700); font-weight:600;}
+.link-list a:hover{text-decoration:underline;}
+.social-row{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;}
+.social-row a{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--gris-300); padding:9px 14px; border-radius:30px; text-decoration:none; font-size:.9rem; font-weight:600; color:var(--tinta);}
+.social-row a:hover{border-color:var(--verde-700); color:var(--verde-700);}
+
+footer{background:var(--verde-900); color:#CFC9AE; padding:34px 0; font-size:.85rem;}
+footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr; padding:56px 24px 64px;}
+  .hero-stripe{display:none;}
+  nav.links{display:none;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .offer-grid{grid-template-columns:1fr;}
+  .life-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="navrow">
+    <a class="brand" href="#inicio">
+      <svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="#D9A441" stroke-width="2"/><path d="M14 6 L20 10 L20 17 L14 22 L8 17 L8 10 Z" fill="#D9A441" opacity=".9"/></svg>
+      UAEMéx
+    </a>
+    <nav class="links">
+      <a href="#inicio">Inicio</a>
+      <a href="#oferta">Oferta Académica</a>
+      <a href="#vida">Vida Universitaria</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="cta-small" href="https://nuevoingreso.uaemex.mx" target="_blank" rel="noopener">Admisión</a>
+  </div>
+</header>
+
+<section id="inicio" class="hero">
+  <div class="hero-stripe"></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" style="color:#EAC77A;">Universidad Autónoma del Estado de México</p>
+      <h1>Un referente educativo de excelencia para el Estado de México</h1>
+      <p class="lead">Conoce a la Universidad Autónoma del Estado de México: un referente educativo de excelencia, compromiso social, investigación e identidad verde y oro.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-oro" href="https://nuevoingreso.uaemex.mx" target="_blank" rel="noopener">Quiero ser Potro UAEMéx</a>
+        <a class="btn btn-outline" href="#oferta">Ver oferta académica</a>
+      </div>
+    </div>
+    <svg class="hero-art" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Edificio de Rectoría de la UAEMéx">
+      <rect x="20" y="130" width="380" height="150" fill="#E7DFC4"/>
+      <rect x="20" y="120" width="380" height="14" fill="#D9A441"/>
+      <g fill="#F4F1E6">
+        <rect x="45" y="150" width="28" height="42"/><rect x="90" y="150" width="28" height="42"/>
+        <rect x="135" y="150" width="28" height="42"/><rect x="180" y="150" width="28" height="60"/>
+        <rect x="225" y="150" width="28" height="42"/><rect x="270" y="150" width="28" height="42"/>
+        <rect x="315" y="150" width="28" height="42"/>
+      </g>
+      <rect x="182" y="210" width="24" height="45" fill="#0B4A2C"/>
+      <polygon points="20,120 400,120 380,75 40,75" fill="#0F6B3E"/>
+      <rect x="180" y="40" width="10" height="40" fill="#0B4A2C"/>
+      <polygon points="150,45 185,15 220,45" fill="#D9A441"/>
+      <circle cx="185" cy="55" r="9" fill="#F4F1E6"/>
+      <rect x="0" y="280" width="420" height="40" fill="#0B4A2C"/>
+      <g opacity=".7" fill="#D9A441"><ellipse cx="60" cy="282" rx="22" ry="10"/><ellipse cx="340" cy="282" rx="26" ry="11"/></g>
+    </svg>
+  </div>
+</section>
+
+<section id="historia">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Nuestra historia</p>
+      <h2>Casi dos siglos formando a la comunidad mexiquense</h2>
+      <p>De instituto literario a máxima casa de estudios del Estado de México: una trayectoria construida sobre educación pública, autonomía y servicio a la sociedad.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">1828</div><p>Nace el Instituto Literario del Estado de México, origen de la actual universidad, con una vocación formativa para el territorio mexiquense.</p></div>
+      <div class="tl-item"><div class="tl-year">1956</div><p>El Instituto se transforma en Universidad Autónoma del Estado de México, consolidando su autonomía académica, administrativa y de gobierno.</p></div>
+      <div class="tl-item"><div class="tl-year">Décadas recientes</div><p>Expansión hacia una red de espacios académicos en distintos municipios, fortalecimiento de posgrados e investigación, y crecimiento de la identidad Potros UAEMéx.</p></div>
+      <div class="tl-item"><div class="tl-year">Hoy</div><p>Una universidad pública con amplia oferta de bachillerato, licenciatura y posgrado, reconocida por su investigación, difusión cultural y vinculación social.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Impacto en la sociedad mexiquense</p>
+      <h2>Educación pública con compromiso social</h2>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">+80</div><div class="l">licenciaturas e ingenierías</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">niveles educativos: medio superior, superior y posgrado</div></div>
+      <div class="stat"><div class="n">196+</div><div class="l">años de historia institucional</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">comunidad: Potros UAEMéx</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="oferta">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Oferta académica</p>
+      <h2>Programas para cada etapa de tu formación</h2>
+      <p>Trayectorias educativas en ciencias, humanidades, ingeniería, salud y artes, con planes de estudio actualizados y vinculación con el sector productivo y social.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card"><h3>Bachillerato</h3><p>Planteles de educación media superior que preparan a los aspirantes para continuar estudios profesionales con bases sólidas.</p></div>
+      <div class="offer-card"><h3>Licenciatura</h3><p>Más de 80 programas en ciencias exactas, sociales, salud, ingeniería, artes y humanidades, distribuidos en espacios académicos del estado.</p></div>
+      <div class="offer-card"><h3>Posgrado e investigación</h3><p>Especialidades, maestrías y doctorados orientados a la generación de conocimiento y a la solución de problemas regionales y nacionales.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="vida" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Vida universitaria</p>
+      <h2>Investigación, deporte y cultura Potros UAEMéx</h2>
+    </div>
+
+    <div class="life-block life-grid">
+      <figure>
+        <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estudiantes en laboratorio de investigación">
+          <rect width="400" height="240" fill="#F4F1E6"/>
+          <rect x="0" y="150" width="400" height="90" fill="#E2DCC6"/>
+          <rect x="30" y="120" width="340" height="34" fill="#0B4A2C"/>
+          <g fill="#D9A441"><circle cx="70" cy="137" r="7"/><circle cx="110" cy="137" r="7"/><circle cx="330" cy="137" r="7"/></g>
+          <rect x="180" y="60" width="18" height="60" fill="#157F4A"/>
+          <rect x="165" y="50" width="48" height="16" rx="3" fill="#0F6B3E"/>
+          <circle cx="250" cy="100" r="22" fill="none" stroke="#0B4A2C" stroke-width="4"/>
+          <rect x="245" y="118" width="10" height="20" fill="#0B4A2C"/>
+          <g fill="#4A4C4E"><circle cx="90" cy="175" r="16"/><circle cx="150" cy="178" r="16"/><circle cx="300" cy="176" r="16"/></g>
+          <g fill="#D9A441"><rect x="78" y="190" width="24" height="30" rx="4"/><rect x="138" y="193" width="24" height="30" rx="4"/><rect x="288" y="191" width="24" height="30" rx="4"/></g>
+        </svg>
+        <figcaption>Estudiantes y docentes en actividades de laboratorio y ciencia aplicada.</figcaption>
+      </figure>
+      <div>
+        <h3>Ciencia que transforma</h3>
+        <p>Espacios académicos y centros de investigación trabajan en biotecnología, salud, ingeniería y ciencias sociales, fortaleciendo la vinculación entre aulas, laboratorios y comunidad.</p>
+      </div>
+    </div>
+
+    <div class="life-block life-grid">
+      <div>
+        <h3>Potros UAEMéx: identidad y pasión deportiva</h3>
+        <p>Los equipos representativos y la mascota Potros UAEMéx dan vida a una comunidad deportiva y cultural activa, que compite y representa a la universidad dentro y fuera del estado.</p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Actividades deportivas Potros UAEMéx">
+          <rect width="400" height="240" fill="#0B4A2C"/>
+          <rect x="0" y="180" width="400" height="60" fill="#0F6B3E"/>
+          <circle cx="200" cy="170" r="55" fill="none" stroke="#F4F1E6" stroke-width="3"/>
+          <line x1="145" y1="170" x2="255" y2="170" stroke="#F4F1E6" stroke-width="2"/>
+          <ellipse cx="90" cy="130" rx="14" ry="18" fill="#D9A441"/>
+          <rect x="80" y="146" width="20" height="40" fill="#F4F1E6"/>
+          <ellipse cx="310" cy="128" rx="14" ry="18" fill="#D9A441"/>
+          <rect x="300" y="144" width="20" height="42" fill="#EAC77A"/>
+          <circle cx="200" cy="105" r="16" fill="#D9A441"/>
+          <path d="M184 105 q16 -26 32 0" fill="none" stroke="#0B4A2C" stroke-width="3"/>
+        </svg>
+        <figcaption>Comunidad deportiva y cultural Potros UAEMéx en actividades universitarias.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Contacto e información institucional</p>
+      <h2>Inicia tu camino en la UAEMéx</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Enlaces institucionales</h3>
+        <ul class="link-list">
+          <li><a href="https://nuevoingreso.uaemex.mx" target="_blank" rel="noopener">Portal de Admisión y Convocatorias UAEMéx →</a></li>
+          <li><a href="https://www.uaemex.mx" target="_blank" rel="noopener">Sitio oficial UAEMéx →</a></li>
+        </ul>
+        <h3 style="margin-top:24px;">Directorio de servicios</h3>
+        <p>Para dudas sobre trámites escolares, becas o servicios estudiantiles, comunícate con el área de Control Escolar de tu espacio académico o consulta el directorio institucional en el sitio oficial.</p>
+      </div>
+      <div class="contact-card">
+        <h3>Síguenos</h3>
+        <p>Entérate de convocatorias, resultados y vida universitaria en nuestras redes oficiales.</p>
+        <div class="social-row">
+          <a href="https://www.facebook.com/UAEMex" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://x.com/UAEM_MX" target="_blank" rel="noopener">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Universidad Autónoma del Estado de México — Patria, Ciencia y Trabajo</span>
+    <span>#SomosUAEMéx 💚💛</span>
+  </div>
+</footer>
+
+</body>
+</html>
