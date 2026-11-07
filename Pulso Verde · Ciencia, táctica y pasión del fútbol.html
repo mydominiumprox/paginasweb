@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pulso Verde · Ciencia, táctica y pasión del fútbol</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6faf7;--surf:#fff;--ink:#0b1f14;--mut:#4d6556;--grass:#0a6b34;--deep:#04361b;--navy:#0b1f4d;--neon:#c6ff00;--line:#d6e4da;--hero:#04361b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#06130c;--surf:#0d2417;--ink:#eef8f1;--mut:#9db8a6;--line:#1c3a28;--hero:#021a0d}}
+:root[data-theme="dark"]{--bg:#06130c;--surf:#0d2417;--ink:#eef8f1;--mut:#9db8a6;--line:#1c3a28;--hero:#021a0d}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+h1,h2,h3{font-family:"Archivo Black",Impact,sans-serif;line-height:1.05;margin:0;text-transform:uppercase}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 4vw;background:var(--deep);flex-wrap:wrap}
+.logo{font-family:"Archivo Black",sans-serif;color:#fff;font-size:18px}.logo b{color:var(--neon)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs a,.tabs button{color:#e8f5ec;text-decoration:none;font:600 14px Inter,sans-serif;padding:8px 14px;border-radius:99px;border:0;background:none;cursor:pointer}
+.tabs a.on{background:var(--neon);color:#04200f}
+.tabs a:hover,.tabs button:hover{background:rgba(198,255,0,.2)}
+.tabs a.on:hover{background:var(--neon)}
+.view{display:none}.view.on{display:block;animation:in .5s}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+.hero{position:relative;background:var(--hero);color:#fff;overflow:hidden}
+.hero svg.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .in{position:relative;padding:clamp(60px,12vw,150px) 5vw clamp(50px,8vw,100px);max-width:1100px;margin:auto;background:linear-gradient(180deg,rgba(2,20,10,.1),rgba(2,20,10,.82))}
+.tag{display:inline-block;background:var(--neon);color:#04200f;font-weight:800;font-size:12px;letter-spacing:.12em;padding:5px 12px;border-radius:99px;text-transform:uppercase}
+.hero h1{font-size:clamp(42px,9vw,112px);margin:16px 0}.hero h1 span{color:var(--neon)}
+.hero p{max-width:640px;font-size:clamp(16px,2vw,20px);color:#e4f3ea}
+.btn{display:inline-block;font:800 15px Inter,sans-serif;padding:14px 26px;border-radius:99px;border:0;cursor:pointer;text-decoration:none;margin:6px 8px 0 0;transition:transform .2s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.b1{background:var(--neon);color:#04200f}.b2{background:#fff;color:var(--navy)}
+.wrap{max-width:1100px;margin:auto;padding:56px 5vw}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:-50px;position:relative;z-index:3;max-width:1100px;margin-inline:auto;padding:0 5vw}
+.stat{background:var(--navy);color:#fff;border-radius:18px;padding:22px;border-bottom:5px solid var(--neon)}
+.stat b{font:clamp(28px,4vw,40px) "Archivo Black",sans-serif;color:var(--neon);display:block}
+h2{font-size:clamp(28px,5vw,52px);margin-bottom:10px}h2 em{font-style:normal;color:var(--grass)}
+.sub{color:var(--mut);max-width:640px;margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:22px;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(10,107,52,.2)}
+.card .ic{font-size:30px}.card h3{font-size:18px;margin:10px 0 6px}.card p{margin:0;color:var(--mut);font-size:15px}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;align-items:center}
+.pic{border-radius:24px;overflow:hidden;border:3px solid var(--neon);box-shadow:0 20px 50px rgba(0,0,0,.25)}.pic svg{display:block;width:100%;height:auto}
+.band{background:var(--deep);color:#fff}.band h2 em{color:var(--neon)}.band .sub{color:#bfd8c8}
+.forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.box{border-radius:24px;padding:28px}.q{background:var(--navy);color:#fff}.nl{background:var(--neon);color:#04200f}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);color:#fff;font:600 15px Inter,sans-serif;cursor:pointer}
+.opt:hover{border-color:var(--neon)}.opt.ok{background:#0a8f3f;border-color:var(--neon)}.opt.no{background:#8f1d1d}
+.nl input{width:100%;padding:14px;border-radius:12px;border:2px solid #04200f;font:16px Inter,sans-serif;margin:10px 0;background:#fff;color:#04200f}
+.nl .btn{background:#04200f;color:#fff;margin:0}
+.formsx{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.pitch{background:linear-gradient(#0c7a3a,#08592b);border-radius:14px;padding:6px}
+.fm{text-align:center}.fm h3{font-size:22px;color:var(--grass);margin-top:10px}.fm small{color:var(--mut)}
+.flip{cursor:pointer;min-height:190px}.flip .r{display:none;color:var(--grass);font-weight:600}.flip.open .r{display:block}.flip.open .m{display:none}
+.flip .hint{font-size:12px;color:var(--grass);font-weight:800;text-transform:uppercase}
+footer{text-align:center;padding:30px;background:#021a0d;color:#9db8a6;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav>
+ <div class="logo">PULSO<b>VERDE</b> ⚽</div>
+ <div class="tabs" id="tabs">
+  <a href="#inicio" data-v="inicio">Inicio</a>
+  <a href="#evolucion" data-v="evolucion">Evolución y Táctica</a>
+  <a href="#mitos" data-v="mitos">Grandes Mitos</a>
+  <button id="goCom">Comunidad</button>
+ </div>
+</nav>
+
+<main>
+<!-- INICIO -->
+<section class="view" id="v-inicio">
+ <header class="hero">
+  <svg class="bg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+   <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#020a1f"/><stop offset=".6" stop-color="#0b1f4d"/><stop offset="1" stop-color="#0a6b34"/></linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#fffde0" stop-opacity=".95"/><stop offset="1" stop-color="#fffde0" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+   </defs>
+   <rect width="1200" height="700" fill="url(#sky)"/>
+   <g id="stars"></g>
+   <g fill="url(#beam)"><polygon points="150,120 40,700 420,700"/><polygon points="1050,120 780,700 1160,700"/><polygon points="420,100 330,700 700,700"/><polygon points="780,100 560,700 940,700"/></g>
+   <g fill="url(#glow)"><circle cx="150" cy="120" r="70"/><circle cx="1050" cy="120" r="70"/><circle cx="420" cy="100" r="60"/><circle cx="780" cy="100" r="60"/></g>
+   <path d="M0 330 Q600 220 1200 330 L1200 700 L0 700Z" fill="#0a1a3a"/>
+   <g id="crowd"></g>
+   <path d="M0 520 Q600 440 1200 520 L1200 700 L0 700Z" fill="#0a7a38"/>
+   <g stroke="#fff" stroke-opacity=".5" stroke-width="3" fill="none"><ellipse cx="600" cy="610" rx="170" ry="40"/><line x1="600" y1="500" x2="600" y2="700"/></g>
+  </svg>
+  <div class="in">
+   <span class="tag">Edición 2026 · Ciencia · Táctica · Pasión</span>
+   <h1>El fútbol late <span>en 4 mil millones</span></h1>
+   <p>Más que un juego: descubre la fascinante evolución táctica del fútbol, la ciencia detrás del rendimiento de élite y por qué 4 mil millones de personas laten al ritmo del deporte rey.</p>
+   <a class="btn b1" href="#evolucion">Explorar la táctica →</a><a class="btn b2" href="#mitos">Romper mitos</a>
+  </div>
+ </header>
+ <div class="stats">
+  <div class="stat"><b>4 mil M</b>aficionados en el planeta</div>
+  <div class="stat"><b>10–13 km</b>recorre un jugador por partido</div>
+  <div class="stat"><b>211</b>federaciones afiliadas a la FIFA</div>
+  <div class="stat"><b>1863</b>nacen las reglas modernas</div>
+ </div>
+ <div class="wrap">
+  <h2>La ciencia del <em>rendimiento de élite</em></h2>
+  <p class="sub">Detrás de cada jugada hay sensores, datos y laboratorios. Así se prepara el deporte rey.</p>
+  <div class="grid">
+   <div class="card"><div class="ic">📡</div><h3>Rastreo GPS</h3><p>Chalecos y cámaras miden velocidad, aceleraciones y carga física de cada jugador en tiempo real.</p></div>
+   <div class="card"><div class="ic">🎯</div><h3>Goles esperados (xG)</h3><p>Un modelo estadístico estima la probabilidad de gol de cada tiro según posición y contexto.</p></div>
+   <div class="card"><div class="ic">🫀</div><h3>Fisiología</h3><p>Control del sueño, la hidratación y la recuperación para llegar fresco al minuto 90.</p></div>
+   <div class="card"><div class="ic">🧠</div><h3>Psicología</h3><p>Manejo de la presión, rutinas de concentración y toma de decisiones en fracciones de segundo.</p></div>
+  </div>
+ </div>
+ <div class="wrap" style="padding-top:0">
+  <div class="split">
+   <div class="pic">
+    <svg viewBox="0 0 600 420" role="img" aria-label="Jugador en plena carrera con balón y aficionados celebrando">
+     <defs><linearGradient id="a1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1f4d"/><stop offset="1" stop-color="#0a6b34"/></linearGradient></defs>
+     <rect width="600" height="420" fill="url(#a1)"/>
+     <g stroke="#c6ff00" stroke-width="5" stroke-linecap="round" opacity=".7"><line x1="20" y1="170" x2="190" y2="170"/><line x1="0" y1="215" x2="170" y2="215"/><line x1="40" y1="260" x2="200" y2="260"/><line x1="10" y1="310" x2="150" y2="310"/></g>
+     <g fill="#fff" id="conf"></g>
+     <g transform="translate(260,70)">
+      <circle cx="60" cy="25" r="24" fill="#f2c9a0"/><path d="M36 22 Q60 -10 84 22 Q60 8 36 22Z" fill="#1a1a1a"/>
+      <path d="M40 55 L90 55 L105 140 L50 150Z" fill="#c6ff00"/>
+      <path d="M90 62 L150 100" stroke="#f2c9a0" stroke-width="16" stroke-linecap="round"/>
+      <path d="M44 62 L0 105" stroke="#f2c9a0" stroke-width="16" stroke-linecap="round"/>
+      <path d="M62 148 L130 215 L125 250" stroke="#0b1f4d" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <path d="M80 148 L50 220 L10 250" stroke="#0b1f4d" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <rect x="112" y="244" width="30" height="12" rx="5" fill="#fff" transform="rotate(10 127 250)"/>
+      <rect x="-5" y="246" width="30" height="12" rx="5" fill="#fff"/>
+     </g>
+     <g><circle cx="470" cy="330" r="26" fill="#fff"/><path d="M470 312 l14 10 -5 17h-18l-5 -17z" fill="#111"/></g>
+     <g stroke="#fff" stroke-width="3" opacity=".6"><line x1="500" y1="350" x2="580" y2="372"/><line x1="490" y1="335" x2="570" y2="340"/></g>
+    </svg>
+   </div>
+   <div>
+    <span class="tag">En acción</span>
+    <h2 style="margin-top:12px">Velocidad que <em>corta el aliento</em></h2>
+    <p class="sub">Los extremos de élite superan los 35 km/h en sprint. Cada arranque combina potencia, técnica y lectura del espacio en menos de un segundo.</p>
+    <a class="btn b1" href="#evolucion">Ver cómo cambió el juego</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- EVOLUCIÓN -->
+<section class="view" id="v-evolucion">
+ <div class="band"><div class="wrap">
+  <span class="tag">Evolución y Táctica</span>
+  <h2 style="margin-top:12px">Del “todos al ataque” al <em>fútbol total</em></h2>
+  <p class="sub">Seis formaciones que cambiaron la historia del juego. Cada una nació como respuesta a la anterior.</p>
+ </div></div>
+ <div class="wrap">
+  <div class="pic" style="padding:18px;background:var(--surf);border-color:var(--grass)">
+   <div class="formsx" id="forms"></div>
+  </div>
+  <div class="grid" style="margin-top:28px">
+   <div class="card"><div class="ic">🔺</div><h3>Era de la pirámide</h3><p>A finales del siglo XIX dominaban los delanteros: cinco atacantes y pocas obligaciones defensivas.</p></div>
+   <div class="card"><div class="ic">🔁</div><h3>Fútbol total</h3><p>Los Países Bajos de los años 70 intercambiaban posiciones: cualquiera atacaba y cualquiera defendía.</p></div>
+   <div class="card"><div class="ic">⚡</div><h3>Presión alta</h3><p>El gegenpressing busca recuperar el balón a segundos de perderlo, cerca del arco rival.</p></div>
+   <div class="card"><div class="ic">📊</div><h3>Era de los datos</h3><p>Hoy las formaciones son fluidas: cambian según se defienda, se construya o se ataque.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- MITOS -->
+<section class="view" id="v-mitos">
+ <div class="band"><div class="wrap">
+  <span class="tag">Grandes Mitos</span>
+  <h2 style="margin-top:12px">Lo que creías… <em>y lo que dicen los datos</em></h2>
+  <p class="sub">Toca cada tarjeta para descubrir la realidad.</p>
+ </div></div>
+ <div class="wrap"><div class="grid" id="myths"></div></div>
+</section>
+</main>
+
+<!-- COMUNIDAD -->
+<section class="band" id="comunidad">
+ <div class="wrap">
+  <h2>Únete a la <em>comunidad</em></h2>
+  <p class="sub">Pon a prueba tu cultura futbolera y recibe análisis táctico cada semana.</p>
+  <div class="forms">
+   <div class="box q">
+    <span class="tag">Quiz</span>
+    <h3 style="margin:12px 0 4px;font-size:22px">¿Cuánto sabes de fútbol?</h3>
+    <div id="quiz"></div>
+   </div>
+   <div class="box nl">
+    <span class="tag" style="background:#04200f;color:var(--neon)">Boletín semanal</span>
+    <h3 style="margin:12px 0 4px;font-size:22px">Análisis táctico cada lunes</h3>
+    <p style="margin:0">Formaciones, datos y jugadas explicadas sin tecnicismos.</p>
+    <form id="nlf" novalidate>
+     <input type="text" id="nm" placeholder="Tu nombre" aria-label="Nombre">
+     <input type="email" id="em" placeholder="tu@correo.com" aria-label="Correo electrónico">
+     <button class="btn" type="submit">Suscribirme</button>
+     <p id="msg" role="status" style="font-weight:800;margin-top:12px"></p>
+    </form>
+   </div>
+  </div>
+ </div>
+</section>
+<footer>© 2026 Pulso Verde · Hecho por y para los que viven el fútbol ⚽</footer>
+
+<script>
+(function(){
+var NS="http://www.w3.org/2000/svg";
+// Estrellas, gradas
+var s="",c="",i;
+for(i=0;i<70;i++)s+='<circle cx="'+((i*173)%1200)+'" cy="'+((i*97)%240)+'" r="'+(i%3?1:1.8)+'" fill="#fff" opacity=".7"/>';
+document.getElementById("stars").innerHTML=s;
+var cols=["#fff","#c6ff00","#f2c9a0","#7fb3ff","#ffd84d"];
+for(i=0;i<260;i++){var x=(i*47)%1200,y=380+((i*31)%140);c+='<circle cx="'+x+'" cy="'+(y+Math.sin(x/190)*-30)+'" r="5" fill="'+cols[i%5]+'" opacity=".85"/>'}
+document.getElementById("crowd").innerHTML=c;
+var cf="";for(i=0;i<30;i++)cf+='<rect x="'+((i*89)%600)+'" y="'+((i*53)%140)+'" width="7" height="12" fill="'+cols[i%5]+'" transform="rotate('+(i*37)+' '+((i*89)%600)+' '+((i*53)%140)+')"/>';
+document.getElementById("conf").innerHTML=cf;
+
+// Formaciones
+var F=[
+["2-3-5","Pirámide · 1880s",[[35,75],[65,75],[22,55],[50,55],[78,55],[10,30],[30,30],[50,30],[70,30],[90,30]]],
+["3-2-2-3","El WM · 1930s",[[25,76],[50,76],[75,76],[35,60],[65,60],[30,44],[70,44],[15,26],[50,24],[85,26]]],
+["4-2-4","Brasil · 1958",[[15,76],[38,76],[62,76],[85,76],[38,56],[62,56],[12,28],[37,26],[63,26],[88,28]]],
+["4-3-3","Fútbol total · 1970s",[[15,76],[38,76],[62,76],[85,76],[28,56],[50,52],[72,56],[20,28],[50,24],[80,28]]],
+["4-4-2","Era clásica · 1990s",[[15,76],[38,76],[62,76],[85,76],[15,56],[38,56],[62,56],[85,56],[38,28],[62,28]]],
+["4-2-3-1","Era moderna · 2010s",[[15,76],[38,76],[62,76],[85,76],[38,60],[62,60],[20,42],[50,40],[80,42],[50,22]]]
+];
+var h="";
+F.forEach(function(f){
+ var d='<svg viewBox="0 0 100 110" style="width:100%"><rect width="100" height="110" rx="6" fill="#0c7a3a"/><g stroke="#fff" stroke-opacity=".5" stroke-width=".7" fill="none"><rect x="4" y="4" width="92" height="102"/><line x1="4" y1="55" x2="96" y2="55"/><circle cx="50" cy="55" r="11"/><rect x="28" y="4" width="44" height="14"/><rect x="28" y="92" width="44" height="14"/></g><circle cx="50" cy="98" r="3.4" fill="#ffd84d"/>';
+ f[2].forEach(function(p){d+='<circle cx="'+p[0]+'" cy="'+(p[1]+8)+'" r="3.6" fill="#c6ff00" stroke="#04200f" stroke-width=".8"/>'});
+ h+='<div class="fm"><div class="pitch">'+d+'</svg></div><h3>'+f[0]+'</h3><small>'+f[1]+'</small></div>';
+});
+document.getElementById("forms").innerHTML=h;
+
+// Mitos
+var M=[
+["“Los jugadores corren 20 km por partido”","Lo habitual es entre 10 y 13 km. Lo que impresiona es la intensidad: decenas de sprints y cambios de ritmo."],
+["“El fútbol lo inventaron los ingleses”","Hubo juegos de pelota en China, Italia y Mesoamérica. Inglaterra codificó las reglas modernas en 1863."],
+["“Más posesión significa ganar”","No siempre. Los datos muestran que la calidad de las ocasiones (xG) pesa más que el tiempo con el balón."],
+["“Los penales son pura lotería”","El análisis de lanzadores y porteros, y la preparación mental, influyen. No todo es suerte."],
+["“El portero solo para balones”","El portero moderno inicia el juego con los pies y actúa como un jugador de campo más."],
+["“El fútbol es solo cosa de hombres”","El fútbol femenino crece con récords de asistencia en estadios y audiencias en todo el mundo."]
+];
+var mh="";
+M.forEach(function(m){mh+='<div class="card flip" tabindex="0" role="button"><div class="hint">Mito</div><h3 class="m">'+m[0]+'</h3><div class="r"><div class="hint">Realidad</div><p style="color:var(--ink);margin-top:8px">'+m[1]+'</p></div></div>'});
+var mc=document.getElementById("myths");mc.innerHTML=mh;
+[].forEach.call(mc.children,function(e){
+ function t(){e.classList.toggle("open")}
+ e.addEventListener("click",t);e.addEventListener("keydown",function(k){if(k.key==="Enter"||k.key===" "){k.preventDefault();t()}});
+});
+
+// Router por hash
+var V=["inicio","evolucion","mitos"];
+function route(){
+ var hv=(location.hash||"").slice(1);if(V.indexOf(hv)<0)hv="inicio";
+ V.forEach(function(v){document.getElementById("v-"+v).classList.toggle("on",v===hv)});
+ [].forEach.call(document.querySelectorAll("#tabs a"),function(a){a.classList.toggle("on",a.dataset.v===hv)});
+ window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);route();
+document.getElementById("goCom").onclick=function(){document.getElementById("comunidad").scrollIntoView({behavior:"smooth"})};
+
+// Quiz
+var Q=[
+["¿Qué país ganó la primera Copa del Mundo en 1930?",["Brasil","Uruguay","Argentina"],1],
+["¿Qué selección popularizó el “fútbol total”?",["Países Bajos","Italia","Alemania"],0],
+["¿Qué mide el xG?",["Kilómetros recorridos","Probabilidad de gol de un tiro","Posesión del balón"],1],
+["¿En qué año se codificaron las reglas modernas en Inglaterra?",["1863","1930","1904"],0]
+];
+var qi=0,sc=0,qd=document.getElementById("quiz");
+function ask(){
+ if(qi>=Q.length){qd.innerHTML='<p style="font-size:20px;font-weight:800;margin:14px 0">Tu marcador: '+sc+' / '+Q.length+' ⚽</p><button class="btn b1" id="rs">Jugar otra vez</button>';
+  document.getElementById("rs").onclick=function(){qi=0;sc=0;ask()};return}
+ var q=Q[qi],o='<p style="margin:10px 0 4px;font-weight:600">'+(qi+1)+'/'+Q.length+' · '+q[0]+'</p>';
+ q[1].forEach(function(t,j){o+='<button class="opt" data-j="'+j+'">'+t+'</button>'});
+ qd.innerHTML=o;
+ [].forEach.call(qd.querySelectorAll(".opt"),function(b){b.onclick=function(){
+  var j=+b.dataset.j;if(j===q[2])sc++;
+  [].forEach.call(qd.querySelectorAll(".opt"),function(x){x.disabled=true;if(+x.dataset.j===q[2])x.classList.add("ok")});
+  if(j!==q[2])b.classList.add("no");
+  setTimeout(function(){qi++;ask()},1100)}});
+}
+ask();
+
+// Boletín (demo local, sin envío)
+document.getElementById("nlf").addEventListener("submit",function(e){
+ e.preventDefault();var em=document.getElementById("em").value.trim(),nm=document.getElementById("nm").value.trim(),m=document.getElementById("msg");
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){m.textContent="Escribe un correo válido.";return}
+ try{localStorage.setItem("pv-sub",em)}catch(x){}
+ m.textContent="¡Gol! "+(nm||"Gracias")+", quedaste en la lista del boletín. ⚽";e.target.reset();
+});
+})();
+</script>
+</body>
+</html>
